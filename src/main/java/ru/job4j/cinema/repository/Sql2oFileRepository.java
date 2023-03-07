@@ -1,14 +1,13 @@
 package ru.job4j.cinema.repository;
 
-import ru.job4j.cinema.model.File;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Sql2o;
+import ru.job4j.cinema.model.File;
 
 import java.util.Optional;
 
 @Repository
 public class Sql2oFileRepository implements FileRepository {
-
     private final Sql2o sql2o;
 
     public Sql2oFileRepository(Sql2o sql2o) {
@@ -18,9 +17,8 @@ public class Sql2oFileRepository implements FileRepository {
     @Override
     public File save(File file) {
         try (var connection = sql2o.open()) {
-            var query = connection.createQuery("INSERT INTO files (name, path) VALUES (:name, :path)", true)
-                    .addParameter("name", file.getName())
-                    .addParameter("path", file.getPath());
+            var query = connection.createQuery(
+                    "INSERT INTO files (name, path) VALUES (:name, :path)", true).bind(file);
             int generatedId = query.executeUpdate().getKey(Integer.class);
             file.setId(generatedId);
             return file;
@@ -44,5 +42,4 @@ public class Sql2oFileRepository implements FileRepository {
             return affectedRows > 0;
         }
     }
-
 }

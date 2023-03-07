@@ -1,9 +1,9 @@
 package ru.job4j.cinema.service;
 
-import ru.job4j.cinema.dto.FileDto;
-import ru.job4j.cinema.model.File;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import ru.job4j.cinema.dto.FileDto;
+import ru.job4j.cinema.model.File;
 import ru.job4j.cinema.repository.FileRepository;
 
 import java.io.IOException;
@@ -14,9 +14,7 @@ import java.util.UUID;
 
 @Service
 public class SimpleFileService implements FileService {
-
     private final FileRepository fileRepository;
-
     private final String storageDirectory;
 
     public SimpleFileService(FileRepository sql2oFileRepository,
