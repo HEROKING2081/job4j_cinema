@@ -1,4 +1,4 @@
-package job4j.cinema;
+package ru.job4j.cinema;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
